@@ -22,8 +22,8 @@
 - data limit : train = 10000개 / val = 3000개
 
 ## 3. 모델
-G_model = Inpainting Generator
-D_model = LSGANDiscriminator
+1.1. G_model = Inpainting Generator
+1.2. D_model = LSGANDiscriminator
 
 생성자와 판별자의 모델을 다르게 해 inpainting에 적합하게 모델을 적용시켰습니다. 모델에 Residule block 및 gateway block을 활용하여 중요한 정보는 전달되면서 모델의 깊이를 깊게 하고자 했지만 예상 외로 성능이 낮아지는 것을 확인해 기본 모델 그대로 두었습니다. (건들면 건들수록 더 안좋아지는 느낌 ..)
 
