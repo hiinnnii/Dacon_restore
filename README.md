@@ -12,7 +12,12 @@
 ![image](https://github.com/user-attachments/assets/ebc25581-809c-402f-a888-755ca40e2edf)
 
 ## 2. 데이터 
-- Augmentation 진행 xx
+
+![image](https://github.com/user-attachments/assets/fba409e2-d1f8-48d6-9d89-18890124619b)
+
+차례대로 train_input, train_gt, test_intput입니다. train_input과 test_input이 매우 흡사하여 충분한 epoch로 훈련한다면 좋은 성과가 나올 것이라고 생각했습니다.
+
+- Augmentation 진행 xx : 가로-세로 Flip, 회전, 부분 earasing 등 다양한 기법들을 사용해봤지만 결과는 좋지 않았습니다. 해당 과제에서는 Augmentation보다 loss를 이용하는 것이 중요하다고 생각합니다. 
 - train / val 분할 (8:2)
 - data limit : train = 10000개 / val = 3000개
 
@@ -20,13 +25,12 @@
 G_model = Inpainting Generator
 D_model = LSGANDiscriminator
 
-생성자와 판별자의 모델을 다르게 해 inpainting에 적합하게 모델을 적용시켰습니다. 모델에 Residule block 및 gateway block을 활용하여 중요한 정보는 전달되면서 모델의 깊이를 깊게 하고자 했지만 예상 외로 성능이 낮아지는 것을 확인해 기본 모델 그대로 두었습니다.  
+생성자와 판별자의 모델을 다르게 해 inpainting에 적합하게 모델을 적용시켰습니다. 모델에 Residule block 및 gateway block을 활용하여 중요한 정보는 전달되면서 모델의 깊이를 깊게 하고자 했지만 예상 외로 성능이 낮아지는 것을 확인해 기본 모델 그대로 두었습니다. (건들면 건들수록 더 안좋아지는 느낌 ..)
 
 - shceduler : StepLr
 - Optimizer : AdamW
 - G_loss : g_loss_adv + 50 * g_loss_pixel + 50 * g_loss_ssim
-- D_loss = d_loss = loss_real + loss_fake + lambda_gp * gp
-
+- D_loss : loss_real + loss_fake + lambda_gp * gp
 
 ## 4. 결과
 
@@ -35,7 +39,7 @@ D_model = LSGANDiscriminator
 
 
 ## 7. 결론
-
+이번 대회에서 아쉬웠던 점은 마지막까지 
 
 ## 8. 개발 환경
 conda == 24.5
