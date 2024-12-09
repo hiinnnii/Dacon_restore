@@ -27,19 +27,22 @@ D_model = LSGANDiscriminator
 
 생성자와 판별자의 모델을 다르게 해 inpainting에 적합하게 모델을 적용시켰습니다. 모델에 Residule block 및 gateway block을 활용하여 중요한 정보는 전달되면서 모델의 깊이를 깊게 하고자 했지만 예상 외로 성능이 낮아지는 것을 확인해 기본 모델 그대로 두었습니다. (건들면 건들수록 더 안좋아지는 느낌 ..)
 
-- shceduler : StepLr
+- shceduler : StepLr-G는 10 step에 한번씩 0.5 줄이고, D는 15에 step에 한번씩 0.5 줄임
 - Optimizer : AdamW
-- G_loss : g_loss_adv + 50 * g_loss_pixel + 50 * g_loss_ssim
-- D_loss : loss_real + loss_fake + lambda_gp * gp
+- G_loss 계산 방법 : g_loss_adv + 50 * g_loss_pixel + 50 * g_loss_ssim
+- D_loss 계산 방법 : loss_real + loss_fake + lambda_gp * gp
+- D_loss 계산 시 Gradient Panalty 적용 : Discriminator의 그라디언트 크기를 1에 가깝게 유지
 
 ## 4. 결과
+다양한 방법들을 시도해보면서 D_loss와 G_loss의 학습 속도 간격이 벌어져 성능이 안나온다는 것이 큰 문제였습니다. Gan에서 이 문제를 해결하기 위해 다양한 시도들이 있었고, D_loss와 G_loss의 차이를 
+
 
 
 ## 5. 시도한 실험
 
 
 ## 7. 결론
-이번 대회에서 아쉬웠던 점은 마지막까지 
+이번 대회에서 아쉬웠던 점은 마지막에 D_loss와 G_loss의 차이가 벌어져 
 
 ## 8. 개발 환경
 conda == 24.5
