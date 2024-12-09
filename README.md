@@ -13,17 +13,31 @@
 
 ## 2. 데이터 
 - Augmentation 진행 xx
-- data limit
-- 
+- train / val 분할 (8:2)
+- data limit : train = 10000개 / val = 3000개
+
 ## 3. 모델
+G_model = Inpainting Generator
+D_model = LSGANDiscriminator
 
-## 4. 최종
+생성자와 판별자의 모델을 다르게 해 inpainting에 적합하게 모델을 적용시켰습니다. 모델에 Residule block 및 gateway block을 활용하여 중요한 정보는 전달되면서 모델의 깊이를 깊게 하고자 했지만 예상 외로 성능이 낮아지는 것을 확인해 기본 모델 그대로 두었습니다.  
 
+- shceduler : StepLr
+- Optimizer : AdamW
+- G_loss : g_loss_adv + 50 * g_loss_pixel + 50 * g_loss_ssim
+- D_loss = d_loss = loss_real + loss_fake + lambda_gp * gp
+
+
+## 4. 결과
 
 
 ## 5. 시도한 실험
 
-## 6. 개발 환경
+
+## 7. 결론
+
+
+## 8. 개발 환경
 conda == 24.5
 autocommand==2.2.2
 backports.tarfile==1.2.0
