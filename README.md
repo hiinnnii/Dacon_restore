@@ -57,10 +57,11 @@ baseline에서 성능을 올릴 수 있었던 가장 큰 이유는 Gradient Pana
 ![image](https://github.com/user-attachments/assets/61a06d73-d4c5-4844-bf02-35a654f4ba34)
 
 ## 5. 추가 실험 아이디어
-- ssim을 활용하여 train_mask 생성 후 학습 진행
+- ssim을 활용하여 train_mask 생성 후 학습 진행 :
+  
   대부분 mask가 잘 형성되었지만 일부 데이터셋에서는 잘 만들어지지 않아 학습이 잘 안되어 결과물이 좋지 않았습니다. 
 - Test 결과에 다양한 필터 입혀보기
-- 
+  
   ![그림1](https://github.com/user-attachments/assets/58a9699c-28ee-4a85-8cb7-a9a208984a57)
 
 - 2단계 UNet 생성하기
