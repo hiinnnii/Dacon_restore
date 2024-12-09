@@ -17,7 +17,10 @@
 
 차례대로 train_input, train_gt, test_intput입니다. train_input과 test_input이 매우 흡사하여 충분한 epoch로 훈련한다면 좋은 성과가 나올 것이라고 생각했습니다.
 
-- Augmentation 진행 xx : 가로-세로 Flip, 회전, 부분 earasing 등 다양한 기법들을 사용해봤지만 결과는 좋지 않았습니다. 해당 과제에서는 Augmentation보다 loss를 이용하는 것이 중요하다고 생각합니다. 
+- Augmentation 진행 xx : 가로-세로 Flip, 회전, 부분 earasing 등 다양한 기법들을 사용해봤지만 결과는 좋지 않았습니다. 해당 과제에서는 Augmentation보다 loss를 이용하는 것이 중요하다고 생각합니다.
+  
+  ![image](https://github.com/user-attachments/assets/58216450-0a30-4cc4-b1a6-00adad11fe38)
+
 - train / val 분할 (8:2)
 - data limit : train = 10000개 / val = 3000개
 
@@ -36,7 +39,10 @@
 ## 4. 결과
 다양한 방법들을 시도해보면서 D_loss와 G_loss의 학습 속도 간격이 벌어져 성능이 안나온다는 것이 큰 문제였습니다. Gan에서 이 문제를 해결하기 위해 다양한 시도들이 있었고, D_loss와 G_loss의 차이를 줄이기 위해 가장 효과적이었던 방법은 Gradient Panalty를 적용하는 것이었습니다. 
 
-ssim loss는 두 이미지의 유사도를 비교하는 방식으로 validation을 평가할 때도 사용했지만 train 중에서도 사용해 원본과 더 유사한 이미지를 만들고자 하였습니다. ssim loss의 가중치를 더 높이면 더 좋은 결과가 나올 것이라 예상했지만 생각과는 다르게 좋지 않은 결과가 나와 G_loss의 가중치는 이후 건들지 않고, g_loss_adv + 50 * g_loss_pixel + 50 * g_loss_ssim를 사용했습니다. 
+ssim loss는 두 이미지의 유사도를 비교하는 방식으로 validation을 평가할 때도 사용했지만 train 중에서도 사용해 원본과 더 유사한 이미지를 만들고자 하였습니다. ssim loss의 가중치를 더 높이면 더 좋은 결과가 나올 것이라 예상했지만 생각과는 다르게 좋지 않은 결과가 나와 G_loss의 가중치는 이후 건들지 않고, g_loss_adv + 50 * g_loss_pixel + 50 * g_loss_ssim를 사용했습니다. 아래 사진은 ssim loss 가중치를 70으로 늘렸을 때 사진입니다.
+
+![image](https://github.com/user-attachments/assets/7b7a35c6-b85b-43d7-a932-a7b7670b13f6)
+
 
 baseline에서 성능을 올릴 수 있었던 가장 큰 이유는 Gradient Panalty, ssim loss의 적인 것 같습니다.
 
@@ -50,7 +56,7 @@ baseline에서 성능을 올릴 수 있었던 가장 큰 이유는 Gradient Pana
 ## 7. 결론
 이번 대회에서 아쉬웠던 점은 ssim을 적용한 코드가 최종 코드라고 생각했고, 이 코드를 돌리면 30등 안에는 들 수 있을 것이라 생각했었는데 BIGGGGGG 과적합이 나버려 .. epoch 30 결과물 score가  0.41이 되었습니다. D_loss와 G_loss의 차이가 벌어져서 그렇다고 판단하였고, Gradient Panalty를 적용한 후에 성능이 좋아진 것을 확인했을 땐 남은 시간이 없어 전체 데이터로 진행하지 못해 아쉬웠습니다. 마지막에 data 10000개로 돌린 것이 그래도 최종 private에서는 0.53으로 기특하게 커주어 뿌듯했고 시도한 것에 비해 좋은 성과를 내지 못해 아쉬움이 있었습니다. 
 
-반면 inpainting 기술은 처음 사용해봐 많은 흥미를 느낄 수 있었습니다. 또한 
+UNet으로 class 분류는 해봤지만 inpainting 기술은 처음 사용해봐 많은 흥미를 느낄 수 있었습니다. 또한 재밌었던 점은 UNet이 크게 훼손된 부분은 그냥 막무가내로 복원할 줄 알았는데 생각보다 논리적으로 복원을 한 다는 점이었습니다.
 
 ## 8. 개발 환경
 conda == 24.5
