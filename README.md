@@ -7,3 +7,6 @@
 ### [설명]
 
 손실된 이미지의 결손 부분을 복구하고, 흑백 이미지에 자연스러운 색을 입히는 AI 알고리즘 개발
+
+## FlowChart
+![image](https://github.com/user-attachments/assets/ebc25581-809c-402f-a888-755ca40e2edf)
