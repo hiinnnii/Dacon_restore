@@ -37,6 +37,12 @@
 - D_loss 계산 시 Gradient Panalty 적용 : Discriminator의 그라디언트 크기를 1에 가깝게 유지
 
 ## 4. 결과
+epoch = 43
+Dacon Public Score = 0.52
+Dacon Private Score = 0.54 (26위)
+
+![image](https://github.com/user-attachments/assets/5b7928a3-fb51-40dc-a9f1-1f164d72572c)
+
 다양한 방법들을 시도해보면서 D_loss와 G_loss의 학습 속도 간격이 벌어져 성능이 안나온다는 것이 큰 문제였습니다. Gan에서 이 문제를 해결하기 위해 다양한 시도들이 있었고, D_loss와 G_loss의 차이를 줄이기 위해 가장 효과적이었던 방법은 Gradient Panalty를 적용하는 것이었습니다. 
 
 ssim loss는 두 이미지의 유사도를 비교하는 방식으로 validation을 평가할 때도 사용했지만 train 중에서도 사용해 원본과 더 유사한 이미지를 만들고자 하였습니다. ssim loss의 가중치를 더 높이면 더 좋은 결과가 나올 것이라 예상했지만 생각과는 다르게 좋지 않은 결과가 나와 G_loss의 가중치는 이후 건들지 않고, g_loss_adv + 50 * g_loss_pixel + 50 * g_loss_ssim를 사용했습니다. 아래 사진은 ssim loss 가중치를 70으로 늘렸을 때 사진입니다.
@@ -53,6 +59,9 @@ baseline에서 성능을 올릴 수 있었던 가장 큰 이유는 Gradient Pana
 ## 5. 추가 실험 아이디어
 - ssim을 활용하여 train_mask 생성 후 학습 진행
 - Test 결과에 다양한 필터 입혀보기
+
+  ![image](https://github.com/user-attachments/assets/d78d1d71-3541-4f35-8d88-33e29c66327c)
+
 - 2단계 UNet 생성하기
 
 ## 7. 결론
