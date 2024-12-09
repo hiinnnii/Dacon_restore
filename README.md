@@ -41,6 +41,7 @@ ssim loss는 두 이미지의 유사도를 비교하는 방식으로 validation�
 baseline에서 성능을 올릴 수 있었던 가장 큰 이유는 Gradient Panalty, ssim loss의 적인 것 같습니다.
 
 물체 복원은 형태가 보이니 이정도에서 만족합니다... ㅎㅎ all data를 사용하고, epoch를 더 늘린다면 좋은 성능을 보일 것이라 예상했습니다. 아래 이미지를 보면 환경 이미지에서는 어느정도 복원을 잘 해낸 것으로 보이지만, 색상 복원을 잘 해내지 못한다는 점에서 점수가 많이 낮은 것이라 예상됩니다. 
+
 ![image](https://github.com/user-attachments/assets/61a06d73-d4c5-4844-bf02-35a654f4ba34)
 
 ## 5. 시도한 실험
